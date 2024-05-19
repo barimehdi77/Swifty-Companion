@@ -8,7 +8,7 @@ class SCAppTheme {
     useMaterial3: true,
     fontFamily: 'Cairo',
     brightness: Brightness.light,
-    primaryColor: Colors.blue,
+    primaryColor: Colors.orange,
     scaffoldBackgroundColor: Colors.white,
     textTheme: SCTextTheme.lightTextTheme,
   );
@@ -17,9 +17,8 @@ class SCAppTheme {
     useMaterial3: true,
     fontFamily: 'Cairo',
     brightness: Brightness.dark,
-    primaryColor: Colors.blue,
+    primaryColor: Colors.orange,
     scaffoldBackgroundColor: Colors.black,
     textTheme: SCTextTheme.darkTextTheme,
   );
-
 }

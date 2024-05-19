@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:getwidget/getwidget.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -50,6 +51,18 @@ class _SearchScreenState extends State<SearchScreen> {
                   Icons.person,
                 ),
               ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            GFButton(
+              onPressed: () {},
+              text: "Search",
+              shape: GFButtonShape.pills,
+              size: GFSize.LARGE,
+              color: theme.primaryColor,
+              textStyle:
+                  theme.textTheme.titleLarge!.copyWith(color: Colors.white),
             ),
           ],
         ),
