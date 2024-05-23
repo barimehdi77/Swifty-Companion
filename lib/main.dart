@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/themes/theme.dart';
 import 'package:swifty_companion/features/login/data/providers/authentication_provider.dart';
 import 'package:swifty_companion/features/login/screens/login_screen.dart';
+import 'package:swifty_companion/features/profile/screens/profile_screen.dart';
 import 'package:swifty_companion/features/search/screens/search_screen.dart';
 
 void main() async {
@@ -30,8 +31,10 @@ class MyApp extends StatelessWidget {
         darkTheme: SCAppTheme.darkTheme,
         // home: const MyHomePage(title: 'Flutter Demo Home Page'),
         routes: {
-          '/': (context) => const LoginScreen(),
+          '/': (context) => const ProfileScreen(),
+          // '/': (context) => const LoginScreen(),
           '/search': (context) => const SearchScreen(),
+          '/profile': (context) => const SearchScreen(),
           // '/profile': (context) => ProfileScreen(),
         },
       ),

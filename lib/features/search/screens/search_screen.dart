@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:oauth2_client/access_token_response.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/database/temp_database.dart';
+import 'package:swifty_companion/features/login/data/providers/authentication_provider.dart';
+import 'package:swifty_companion/models/user_model.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -14,6 +19,8 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+
+    final UserModel user = UserModel.fromJson(me);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
@@ -24,6 +31,7 @@ class _SearchScreenState extends State<SearchScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(user.displayname),
             Text(
               'Who You are looking for?',
               style: theme.textTheme.headlineLarge,
@@ -56,7 +64,15 @@ class _SearchScreenState extends State<SearchScreen> {
               height: 20,
             ),
             GFButton(
-              onPressed: () {},
+              onPressed: () async {
+                AccessTokenResponse? userToken = await context
+                    .read<AuthenticationProvider>()
+                    .authenticationService
+                    .getToken;
+
+                print(
+                    "userToken : ${userToken?.accessToken ?? "TOKEN NOT FOUND"}");
+              },
               text: "Search",
               shape: GFButtonShape.pills,
               size: GFSize.LARGE,

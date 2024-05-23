@@ -24,6 +24,9 @@ class AuthenticationService {
 
   OAuth2Helper get helper => _oAuth2helper;
 
+  Future<AccessTokenResponse?> get getToken async =>
+      await _oAuth2helper.getToken();
+
   Future<bool> checkToken() async {
     try {
       AccessTokenResponse? token = await _oAuth2helper.getToken();
