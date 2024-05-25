@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:getwidget/getwidget.dart';
 import 'package:swifty_companion/commn_widgets/card_widget.dart';
 import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
 import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
 import 'package:swifty_companion/database/temp_database.dart';
+import 'package:swifty_companion/features/profile/widgets/cursus_widget.dart';
 import 'package:swifty_companion/models/user_model.dart';
 import 'package:swifty_companion/utils/extensions.dart';
 
@@ -25,27 +27,15 @@ class DisplayCursusWidget extends StatelessWidget {
               color: Colors.black54,
             ),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return GFListTile(
-                avatar: GFAvatar(
-                  backgroundColor: SecondaryColor.secondarycolor,
-                  shape: GFAvatarShape.standard,
-                  child: Text(
-                    user.cursusUsers[index].cursusId.toString(),
-                    style: theme.textTheme.headlineMedium!.copyWith(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                titleText: user.cursusUsers[index].cursus.name,
-                subTitleText: user.cursusUsers[index].cursus.slug,
-                icon: const Icon(Icons.arrow_forward_ios),
-                color: PrimaryColor.primarycolor,
-              );
-            },
-            itemCount: user.cursusUsers.length,
+          SizedBox(
+            height: 170,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return CursusWidget(cursus: user.cursusUsers[index]);
+              },
+              itemCount: user.cursusUsers.length,
+            ),
           ),
         ],
       ),
