@@ -13,6 +13,8 @@ class UserModel {
   final String url;
   final String kind;
   final int wallet;
+  @JsonKey(name: 'correction_point')
+  final int correctionPoint;
   final UserImageModel image;
   @JsonKey(name: 'first_name')
   final String firstName;
@@ -37,6 +39,7 @@ class UserModel {
     required this.url,
     required this.kind,
     required this.displayname,
+    required this.correctionPoint,
     required this.wallet,
     required this.image,
     required this.email,
