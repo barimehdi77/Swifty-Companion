@@ -26,6 +26,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       cursusUsers: (json['cursus_users'] as List<dynamic>)
           .map((e) => CursusUsersModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      projectsUsers: (json['projects_users'] as List<dynamic>)
+          .map((e) => ProjectUserModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
       achievements: (json['achievements'] as List<dynamic>)
           .map((e) => AchievementModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -49,5 +52,6 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'alumni?': instance.isAlumni,
       'active?': instance.isActive,
       'cursus_users': instance.cursusUsers,
+      'projects_users': instance.projectsUsers,
       'achievements': instance.achievements,
     };

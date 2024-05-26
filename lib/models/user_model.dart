@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:swifty_companion/models/achievement_model.dart';
 import 'package:swifty_companion/models/cursus_users_model.dart';
+import 'package:swifty_companion/models/project_user_model.dart';
 import 'package:swifty_companion/models/user_image_model.dart';
 
 part 'user_model.g.dart';
@@ -33,6 +34,8 @@ class UserModel {
   final bool isActive;
   @JsonKey(name: 'cursus_users')
   final List<CursusUsersModel> cursusUsers;
+  @JsonKey(name: 'projects_users')
+  final List<ProjectUserModel> projectsUsers;
   final List<AchievementModel> achievements;
 
   UserModel({
@@ -53,6 +56,7 @@ class UserModel {
     required this.isAlumni,
     required this.isActive,
     required this.cursusUsers,
+    required this.projectsUsers,
     required this.achievements,
   });
 

@@ -36,7 +36,7 @@ class UserDetailsWidget extends StatelessWidget {
           // width: 140.0,
           lineHeight: 20.0,
           center: Text(
-            "${user.cursusUsers[1].level}%",
+            "${user.cursusUsers.where((i) => i.cursus.kind == "main").first.level}%",
             style: theme.textTheme.titleLarge!,
           ),
           percent: user.cursusUsers[1].level.remainder(1),

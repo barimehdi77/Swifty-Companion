@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:swifty_companion/commn_widgets/card_widget.dart';
-import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
-import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
 import 'package:swifty_companion/database/temp_database.dart';
 import 'package:swifty_companion/features/profile/widgets/cursus_widget.dart';
 import 'package:swifty_companion/models/user_model.dart';
