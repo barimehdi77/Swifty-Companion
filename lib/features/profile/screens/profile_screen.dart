@@ -77,7 +77,7 @@ class ProfileScreen extends StatelessWidget {
                           fullWidthButton: true,
                           color: PrimaryColor.primarycolor,
                           onPressed: () {
-                            Navigator.pushReplacementNamed(context, '/search');
+                            Navigator.pop(context);
                           },
                           text: "Search agian",
                         ),

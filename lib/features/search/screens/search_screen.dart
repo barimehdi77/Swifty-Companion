@@ -3,6 +3,7 @@ import 'package:getwidget/getwidget.dart';
 import 'package:oauth2_client/access_token_response.dart';
 import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
+import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
 import 'package:swifty_companion/features/login/data/providers/authentication_provider.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -23,6 +24,24 @@ class _SearchScreenState extends State<SearchScreen> {
       appBar: AppBar(
         backgroundColor: theme.primaryColor,
         title: const Text("Search Screen"),
+        actions: [
+          GFIconButton(
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/profile',
+                arguments: "me",
+              );
+            },
+            icon: const Icon(Icons.person),
+            shape: GFIconButtonShape.circle,
+            type: GFButtonType.outline,
+            color: SecondaryColor.secondarycolor,
+          ),
+          const SizedBox(
+            width: 20,
+          ),
+        ],
       ),
       body: Container(
         padding: const EdgeInsets.all(20),

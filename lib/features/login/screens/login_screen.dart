@@ -37,8 +37,7 @@ class LoginScreen extends StatelessWidget {
                   if (isLoggedIn && context.mounted) {
                     Navigator.pushReplacementNamed(
                       context,
-                      '/profile',
-                      arguments: "abdel-",
+                      '/search',
                     );
                   }
                 },
