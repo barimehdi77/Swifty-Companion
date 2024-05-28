@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:swifty_companion/commn_widgets/card_widget.dart';
+import 'package:provider/provider.dart';
+import 'package:swifty_companion/commn/providers/api_call_provider.dart';
 import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
-import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
-import 'package:swifty_companion/database/temp_database.dart';
 import 'package:swifty_companion/features/profile/widgets/display_achievement_widget.dart';
 import 'package:swifty_companion/features/profile/widgets/display_cursus_widget.dart';
 import 'package:swifty_companion/features/profile/widgets/display_projects_widget.dart';
 import 'package:swifty_companion/features/profile/widgets/user_profile_widget.dart';
 import 'package:swifty_companion/models/user_model.dart';
-import 'package:swifty_companion/utils/extensions.dart';
-import 'package:swifty_companion/utils/show_dynamic_alert.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -20,7 +16,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final UserModel user = UserModel.fromJson(me);
+    final login = ModalRoute.of(context)!.settings.arguments as String;
+
+    // final UserModel user = UserModel.fromJson(me);
+    // print(user.id);
 
     return Scaffold(
       appBar: AppBar(
@@ -28,27 +27,74 @@ class ProfileScreen extends StatelessWidget {
         title: const Text("Profile Screen"),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          child: const Center(
-            child: Column(
-              children: <Widget>[
-                UserProfileWidget(),
-                SizedBox(
-                  height: 20,
+        child: FutureBuilder(
+          future: login == "me"
+              ? context
+                  .read<ApiCallProvider>()
+                  .createApiCallProvider(context)
+                  .getMe()
+              : context
+                  .read<ApiCallProvider>()
+                  .createApiCallProvider(context)
+                  .searchWithLogin(login),
+          builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
+            print("data: ");
+            print("data: ");
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.data != null) {
+                return Container(
+                  padding: const EdgeInsets.all(20),
+                  child: const Center(
+                    child: Column(
+                      children: <Widget>[
+                        UserProfileWidget(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        DisplayCursusWidget(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        DisplayProjectsWidget(),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        DisplayAchievementWidget(),
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text("Login is not correct"),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
+                        child: GFButton(
+                          fullWidthButton: true,
+                          color: PrimaryColor.primarycolor,
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, '/search');
+                          },
+                          text: "Search agian",
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }
+            } else {
+              return Container(
+                alignment: Alignment.center,
+                child: const GFLoader(
+                  type: GFLoaderType.square,
                 ),
-                DisplayCursusWidget(),
-                SizedBox(
-                  height: 20,
-                ),
-                DisplayProjectsWidget(),
-                SizedBox(
-                  height: 20,
-                ),
-                DisplayAchievementWidget(),
-              ],
-            ),
-          ),
+              );
+            }
+          },
         ),
       ),
     );

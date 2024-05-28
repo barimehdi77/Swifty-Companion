@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
-import 'package:swifty_companion/database/temp_database.dart';
-import 'package:swifty_companion/models/user_model.dart';
+import 'package:swifty_companion/features/profile/providers/user_provider.dart';
 import 'package:user_profile_avatar/user_profile_avatar.dart';
 
 class UserImageWidget extends StatelessWidget {
@@ -9,7 +9,12 @@ class UserImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UserModel user = UserModel.fromJson(me);
+    final user = context.read<UserProvider>().user;
+
+    if (user == null) {
+      return Container();
+    }
+
     return Container(
       decoration: const BoxDecoration(
         shape: BoxShape.circle,

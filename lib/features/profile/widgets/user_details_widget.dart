@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
 import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
-import 'package:swifty_companion/database/temp_database.dart';
-import 'package:swifty_companion/models/user_model.dart';
+import 'package:swifty_companion/features/profile/providers/user_provider.dart';
 import 'package:swifty_companion/utils/extensions.dart';
 
 class UserDetailsWidget extends StatelessWidget {
@@ -12,7 +12,11 @@ class UserDetailsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final UserModel user = UserModel.fromJson(me);
+
+    final user = context.read<UserProvider>().user;
+    if (user == null) {
+      return Container();
+    }
 
     return Column(
       children: [

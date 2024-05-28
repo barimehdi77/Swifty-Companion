@@ -35,7 +35,11 @@ class LoginScreen extends StatelessWidget {
                       .authenticationService
                       .checkToken();
                   if (isLoggedIn && context.mounted) {
-                    Navigator.pushReplacementNamed(context, '/search');
+                    Navigator.pushReplacementNamed(
+                      context,
+                      '/profile',
+                      arguments: "abdel-",
+                    );
                   }
                 },
                 text: "Login",

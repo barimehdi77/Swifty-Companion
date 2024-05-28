@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:provider/provider.dart';
 import 'package:swifty_companion/commn_widgets/card_widget.dart';
 import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
-import 'package:swifty_companion/database/temp_database.dart';
+import 'package:swifty_companion/features/profile/providers/user_provider.dart';
 import 'package:swifty_companion/features/profile/widgets/achievement_widget.dart';
-import 'package:swifty_companion/models/user_model.dart';
 import 'package:swifty_companion/utils/extensions.dart';
 import 'package:swifty_companion/utils/show_dynamic_bottom_sheet.dart';
 
@@ -15,7 +15,10 @@ class DisplayAchievementWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final UserModel user = UserModel.fromJson(me);
+    final user = context.read<UserProvider>().user;
+    if (user == null) {
+      return Container();
+    }
 
     return CardWidget(
       padding: const EdgeInsets.all(7),
