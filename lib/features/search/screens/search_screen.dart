@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:getwidget/getwidget.dart';
-import 'package:oauth2_client/access_token_response.dart';
-import 'package:provider/provider.dart';
 import 'package:swifty_companion/constants/themes/colors/primary_color.dart';
 import 'package:swifty_companion/constants/themes/colors/secondary_color.dart';
-import 'package:swifty_companion/features/login/data/providers/authentication_provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -99,8 +96,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     duration: const Duration(seconds: 20),
                   );
                   ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  _searchController.clear();
                 }
+                _searchController.clear();
               },
               text: "Search",
               shape: GFButtonShape.pills,
