@@ -38,8 +38,6 @@ class ProfileScreen extends StatelessWidget {
                   .createApiCallProvider(context)
                   .searchWithLogin(login),
           builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
-            print("data: ");
-            print("data: ");
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.data != null) {
                 return Container(
