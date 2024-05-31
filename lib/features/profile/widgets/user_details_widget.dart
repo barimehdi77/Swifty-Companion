@@ -33,6 +33,12 @@ class UserDetailsWidget extends StatelessWidget {
             color: SecondaryColor.secondarycolor,
           ),
         ),
+        Text(
+          user.email,
+          style: theme.textTheme.titleSmall!.copyWith(
+            color: SecondaryColor.secondarycolor,
+          ),
+        ),
         const SizedBox(
           height: 7,
         ),
